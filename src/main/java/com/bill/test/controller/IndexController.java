@@ -1,15 +1,21 @@
 
 package com.bill.test.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeoutException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bill.test.bean.User;
+import com.bill.test.mq.Receive;
 
 /**
  * 
@@ -19,6 +25,9 @@ import com.bill.test.bean.User;
 @RestController
 @RequestMapping(value = "/index")
 public class IndexController {
+	private static final Logger logger=LoggerFactory.getLogger(IndexController.class);
+	@Autowired
+	private Receive receive;
 
 	@RequestMapping
 	public String index() {
@@ -42,6 +51,13 @@ public class IndexController {
 		user.setName(name);
 		user.setDate(new Date());
 		return user;
+	}
+	
+	
+	@RequestMapping(value="/consume")
+	public String receive() throws IOException, TimeoutException {
+		String message=receive.receive();
+		return message;
 	}
 
 }
