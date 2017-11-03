@@ -16,7 +16,7 @@ import com.rabbitmq.client.Envelope;
 
 public class MqConsumerTest {
 	private static final Logger logger = LoggerFactory.getLogger(MqConsumerTest.class);
-	private final static String QUEUE_NAME = "hello";
+	private final static String QUEUE_NAME = "hello01";
 
 	public static void main(String[] argv) throws Exception {
 		int hashCode = MqConsumerTest.class.hashCode();
@@ -25,11 +25,12 @@ public class MqConsumerTest {
 		factory.setHost("192.168.1.129");
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
-
-		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+		
+		boolean durable=true;
+		channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 		/** 每次从队列中获取数量 **/
-		int prefetchCount = 1;
+		int prefetchCount = 2;
 		channel.basicQos(prefetchCount);
 		
 
