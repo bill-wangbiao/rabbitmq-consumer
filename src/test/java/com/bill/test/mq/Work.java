@@ -10,7 +10,6 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
-import com.rabbitmq.client.Delivery;
 
 public class Work {
 	private static final Logger logger=LoggerFactory.getLogger(Work.class);

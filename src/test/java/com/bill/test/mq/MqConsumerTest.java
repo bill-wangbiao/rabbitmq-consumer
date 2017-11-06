@@ -13,7 +13,15 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
-
+/**
+ * 工作队列consumer：
+ * 1、持久化
+ * 2、匿名交换器
+ * 3、消息确认
+ * 4、负载均衡
+ * @author sara
+ *
+ */
 public class MqConsumerTest {
 	private static final Logger logger = LoggerFactory.getLogger(MqConsumerTest.class);
 	private final static String QUEUE_NAME = "hello01";
@@ -30,7 +38,7 @@ public class MqConsumerTest {
 		channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 		/** 每次从队列中获取数量 **/
-		int prefetchCount = 2;
+		int prefetchCount = 1;
 		channel.basicQos(prefetchCount);
 		
 
