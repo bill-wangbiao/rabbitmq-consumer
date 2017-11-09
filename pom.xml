@@ -47,6 +47,13 @@
 		    <!-- <version>5.0.0</version> -->
 		    <version>3.4.2</version>
 		</dependency>
+		
+		<!-- zeroMQ依赖 -->
+		<dependency>  
+	        <groupId>org.zeromq</groupId>  
+	        <artifactId>jeromq</artifactId>  
+	        <version>0.3.1</version>  
+		</dependency>  
 
 	</dependencies>
 
